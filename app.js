@@ -71,7 +71,7 @@ bot.command("fetch", async (ctx) => {
     const username = args[1];
 
     try {
-        const tweets = await fetchLatestTweet(username);
+        const tweets = await fetchLatestTweetByUsername(username);
         if (tweets.data && tweets.data.length > 0) {
             ctx.reply(`Latest tweet from @${username}: ${tweets.data[0].text}`);
         } else {
