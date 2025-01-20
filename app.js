@@ -64,7 +64,6 @@ bot.command("fetch", async (ctx) => {
     const args = ctx.message.text.split(" ");
     if (args.length < 2) {
         await fetchLatestTweet();
-        ctx.reply("Fetched latest tweets !");
         return ctx.reply("Please provide a Twitter username. Example: /fetch TwitterHandle");
     }
 
