@@ -1,10 +1,10 @@
 const axios = require("axios");
 const { Bot } = require("grammy");
 
-const BOT_TOKEN = "YOUR_TELEGRAM_BOT_TOKEN";
-const CHANNEL_ID = "@your_channel_id";
+const BOT_TOKEN = "8040058187:AAEykWGMhrv9lWlFrj-W9rwPiPENI2ZuHXw";
+const CHANNEL_ID = "-1002333484577";
 const BEARER_TOKEN = "AAAAAAAAAAAAAAAAAAAAAFZpyQEAAAAAp7k5DqPP65jx29YamyqM0NgsV%2FM%3D41Zh40EF5F7PQwU5iCZiybISIGntiuINEpW8BV0GP2cwwoqJh0";
-const USERNAME = "target_username";
+const USERNAME = "cryptobeastreal";
 const bot = new Bot(BOT_TOKEN);
 
 let lastTweetId = null;
