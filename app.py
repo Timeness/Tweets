@@ -84,9 +84,6 @@ async def list_users(update, _):
     else:
         await update.reply("No usernames have been added yet.")
 
-async def main():
-    asyncio.create_task(check_tweets())
-    await app.start()
 
-if __name__ == "__main__":
-    asyncio.run(main())
+asyncio.create_task(check_tweets())
+app.run()
