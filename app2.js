@@ -88,4 +88,5 @@ bot.command("start", (ctx) =>
 
 setInterval(fetchLatestTweet, 60000);
 
-bot.start();
+bot.start()
+    .catch((err) => console.error("Failed to start the bot:", err.message));
