@@ -10,10 +10,12 @@ access_token = '1871540797289721856-x34bRv6Aku1rLByWn02fi9HIOUC9d0'
 access_token_secret = 'TrM6zVfWzQZb8ZsGIFq8yexaOV4YhfbAMPS4uaTIpThpn'
 telegram_token = '8040058187:AAHyF6N5GoG4mJqvxBbSSG3hfuRdd3'
 channel_id = '-1002333484577'
+api_id = '29400566'
+api_hash = '8fd30dc496aea7c14cf675f59b74ec6f'
 
 auth = tweepy.OAuth1UserHandler(consumer_key, consumer_secret, access_token, access_token_secret)
 api = tweepy.API(auth)
-app = Client("TWEET_BOT", bot_token=telegram_token)
+app = Client(name="TWEET_BOT", api_id=api_id, api_hash=api_hash, bot_token=telegram_token)
 
 def load_usernames():
     try:
