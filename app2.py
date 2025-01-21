@@ -57,36 +57,36 @@ def check_tweets():
 
 @app.on_message(filters.command("add"))
 async def add(update, _):
-    username = update.text.split()[1] if len(update.text.split()) > 1 else None
+    username = _.text.split()[1] if len(_.text.split()) > 1 else None
     if username and username not in usernames:
         usernames.append(username)
         save_usernames()
-        await update.reply(f"Username @{username} added successfully.")
+        await _.reply(f"Username @{username} added successfully.")
     else:
-        await update.reply("Invalid username or username already added.")
+        await _.reply("Invalid username or username already added.")
 
 @app.on_message(filters.command("fetch"))
 async def fetch(update, _):
-    username = update.text.split()[1] if len(update.text.split()) > 1 else None
+    username = _.text.split()[1] if len(_.text.split()) > 1 else None
     if username:
         tweet = fetch_latest_tweet(username)
         if tweet:
-            await update.reply(f"Latest tweet from @{username}: {tweet}")
+            await _.reply(f"Latest tweet from @{username}: {tweet}")
         else:
-            await update.reply(f"No tweets found for @{username}.")
+            await _.reply(f"No tweets found for @{username}.")
     else:
-        await update.reply("Please provide a valid username.")
+        await _.reply("Please provide a valid username.")
 
 @app.on_message(filters.command("list"))
 async def list_users(update, _):
     if usernames:
-        await update.reply("Added usernames:\n" + "\n".join([f"@{user}" for user in usernames]))
+        await _.reply("Added usernames:\n" + "\n".join([f"@{user}" for user in usernames]))
     else:
-        await update.reply("No usernames have been added yet.")
+        await _.reply("No usernames have been added yet.")
 
 @app.on_message(filters.command("start"))
 async def start(update, _):
-    await update.reply("Tweet Bot is running! You can add users with /add <username>, fetch latest tweets with /fetch <username>, or list added users with /list.")
+    await _.reply("Tweet Bot is running! You can add users with /add <username>, fetch latest tweets with /fetch <username>, or list added users with /list.")
 
 tweet_checking_thread = threading.Thread(target=check_tweets, daemon=True)
 tweet_checking_thread.start()
