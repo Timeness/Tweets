@@ -2,7 +2,7 @@ import tweepy
 import json
 import time
 from pyrogram import Client, filters
-import asyncio
+import threading
 
 consumer_key = 'Hoz7kYZlx3spHpZQWYwzlxyBf'
 consumer_secret = 'FBEL5LdThweat35Kd2OFp5QxObVMYGiTrAg9N32zIZZHA6TyHx'
@@ -30,7 +30,7 @@ def save_usernames():
 
 usernames = load_usernames()
 
-async def fetch_latest_tweet(username):
+def fetch_latest_tweet(username):
     try:
         tweets = api.user_timeline(screen_name=username, count=1, tweet_mode='extended')
         if tweets:
@@ -41,19 +41,19 @@ async def fetch_latest_tweet(username):
         print(f"Error fetching tweets for {username}: {e}")
         return None
 
-async def send_to_telegram(tweet):
+def send_to_telegram(tweet):
     try:
-        await app.send_message(channel_id, tweet)
+        app.send_message(channel_id, tweet)
     except Exception as e:
         print(f"Error sending message to Telegram: {e}")
 
-async def check_tweets():
+def check_tweets():
     while True:
         for username in usernames:
-            tweet = await fetch_latest_tweet(username)
+            tweet = fetch_latest_tweet(username)
             if tweet:
-                await send_to_telegram(f"New tweet from @{username}: {tweet}")
-        await asyncio.sleep(120)
+                send_to_telegram(f"New tweet from @{username}: {tweet}")
+        time.sleep(120)
 
 @app.on_message(filters.command("add"))
 async def add(update, _):
@@ -69,7 +69,7 @@ async def add(update, _):
 async def fetch(update, _):
     username = update.text.split()[1] if len(update.text.split()) > 1 else None
     if username:
-        tweet = await fetch_latest_tweet(username)
+        tweet = fetch_latest_tweet(username)
         if tweet:
             await update.reply(f"Latest tweet from @{username}: {tweet}")
         else:
@@ -88,9 +88,7 @@ async def list_users(update, _):
 async def start(update, _):
     await update.reply("Tweet Bot is running! You can add users with /add <username>, fetch latest tweets with /fetch <username>, or list added users with /list.")
 
-async def main():
-    await check_tweets()
+tweet_checking_thread = threading.Thread(target=check_tweets, daemon=True)
+tweet_checking_thread.start()
 
-app.start()
-asyncio.create_task(main())
 app.run()
