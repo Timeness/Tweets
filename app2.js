@@ -86,7 +86,7 @@ bot.command("start", (ctx) =>
     ctx.reply("Heya! I will post the latest tweets here. Use /fetch {username} to get the latest tweets from any user.")
 );
 
-setInterval(fetchLatestTweet, 60000);
+setInterval(fetchLatestTweet, 10000);
 
 bot.start()
     .catch((err) => console.error("Failed to start the bot:", err.message));
