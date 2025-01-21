@@ -8,12 +8,12 @@ consumer_key = 'Hoz7kYZlx3spHpZQWYwzlxyBf'
 consumer_secret = 'FBEL5LdThweat35Kd2OFp5QxObVMYGiTrAg9N32zIZZHA6TyHx'
 access_token = '1871540797289721856-x34bRv6Aku1rLByWn02fi9HIOUC9d0'
 access_token_secret = 'TrM6zVfWzQZb8ZsGIFq8yexaOV4YhfbAMPS4uaTIpThpn'
-
-telegram_token = 'YOUR_TELEGRAM_BOT_TOKEN'
-channel_id = ''
+telegram_token = '8040058187:AAHyF6N5GoG4mJqvxBbSSG3hfuRdd3'
+channel_id = '-1002333484577'
 
 auth = tweepy.OAuth1UserHandler(consumer_key, consumer_secret, access_token, access_token_secret)
 api = tweepy.API(auth)
+app = Client("TWEET_BOT", bot_token=telegram_token)
 
 def load_usernames():
     try:
@@ -52,8 +52,6 @@ async def check_tweets():
             if tweet:
                 await send_to_telegram(f"New tweet from @{username}: {tweet}")
         await asyncio.sleep(120)
-
-app = Client("tweet_telegram_bot", bot_token=telegram_token)
 
 @app.on_message(filters.command("add"))
 async def add(update, _):
