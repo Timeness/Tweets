@@ -1,7 +1,7 @@
 const axios = require("axios");
 const { Bot } = require("grammy");
 
-const BOT_TOKEN = "8040058187:AAEykWGMhrv9lW9rwPiPENI2ZuHXw";
+const BOT_TOKEN = "8040058187:AAHyF6N5GoG4mJqvxBbSSG3hfuRdd3-aY8M";
 const CHANNEL_ID = "-1002333484577";
 const BEARER_TOKEN = "AAAAAAAAAAAAAAAAAAAAAFZpyQEAAAAAp7k5DqPP65jx29YamyqM0NgsV%2FM%3D41Zh40EF5F7PQwU5iCZiybISIGntiuINEpW8BV0GP2cwwoqJh0";
 const bot = new Bot(BOT_TOKEN);
