@@ -59,7 +59,7 @@ def check_tweets():
 async def add(update, _):
     username = _.text.split()[1] if len(_.text.split()) > 1 else None
     if username and username not in usernames:
-        usernames.append(username)
+        usernames.add(username)
         save_usernames()
         await _.reply(f"Username @{username} added successfully.")
     else:
